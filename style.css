@@ -1,0 +1,109 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+:root {
+  --primary: #005a8d; /* Color corporativo simulado */
+  --accent: #d4af37;
+  --bg-light: #f4f4f4;
+}
+
+body {
+  background: #222;
+  display: flex;
+  justify-content: center;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 450px; /* Simulación de ancho móvil */
+  height: 100vh;
+  background: white;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header y Filtros */
+.app-header {
+  padding: 1rem;
+  background: var(--primary);
+  color: white;
+}
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-top: 10px;
+}
+.filter-btn {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.filter-btn.active {
+  background: var(--accent);
+  color: black;
+}
+
+/* El Mapa */
+.map-viewport {
+  flex-grow: 1;
+  overflow: auto; /* Permite scroll si el mapa es grande */
+  position: relative;
+  background: #e0e0e0;
+}
+
+.map-wrapper {
+  position: relative; /* CRÍTICO para los pines */
+  display: inline-block;
+}
+
+#airport-map {
+  display: block;
+  height: 80vh; /* Ajusta según tu imagen */
+  width: auto;
+}
+
+/* Estilo de los Pines (inyectados por JS) */
+.pin {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: var(--accent);
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  cursor: pointer;
+  border: 2px solid white;
+  transition: scale 0.2s;
+}
+.pin:hover {
+  scale: 1.2;
+}
+
+/* Panel de Detalles Infomativos */
+.info-panel {
+  position: absolute;
+  bottom: -100%; /* Escondido abajo */
+  left: 0;
+  width: 100%;
+  background: white;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+  transition: bottom 0.3s ease-out;
+  z-index: 100;
+}
+.info-panel.show {
+  bottom: 0;
+}
