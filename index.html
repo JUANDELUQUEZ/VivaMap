@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AIFA - Guía de Pasajero</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app-container">
+      <header class="app-header">
+        <h1>Explora el AIFA</h1>
+        <nav class="filter-bar">
+          <button class="filter-btn active" data-category="all">Todos</button>
+          <button class="filter-btn" data-category="baño">Baños</button>
+          <button class="filter-btn" data-category="transporte">
+            Transporte
+          </button>
+          <button class="filter-btn" data-category="check-in">Check-in</button>
+        </nav>
+      </header>
+
+      <section class="map-viewport" id="map-container">
+        <div class="map-wrapper">
+          <img
+            src="assets/plano-aifa.png"
+            alt="Plano Aeropuerto"
+            id="airport-map"
+          />
+          <div id="pins-layer"></div>
+        </div>
+      </section>
+
+      <aside class="info-panel" id="poi-detail">
+        <button class="close-btn">&times;</button>
+        <div class="panel-content">
+          <h2 id="poi-name">Selecciona un punto</h2>
+          <p id="poi-category"></p>
+          <div class="stats">
+            <span>⏳ Espera: <strong id="wait-time">--</strong></span>
+            <span>🚶 Caminata: <strong id="walk-time">--</strong></span>
+          </div>
+          <button class="action-btn">¿Cómo llegar?</button>
+        </div>
+      </aside>
+    </main>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
