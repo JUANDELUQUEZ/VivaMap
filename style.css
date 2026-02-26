@@ -1,202 +1,290 @@
-/* Reset básico */
+/* Variables Globales de Marca Viva */
+:root {
+  --viva-green-dark: #005030; /* Fondo del header */
+  --viva-green-light: #00b259;
+  --viva-red: #ff3b00; /* Botones de acción principal */
+  --viva-red-hover: #d93200;
+  --bg-app: #eef2f5;
+  --text-dark: #333333;
+  --text-gray: #7a7a7a;
+  --border-radius-lg: 20px;
+  --border-radius-sm: 10px;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-}
-
-:root {
-  --primary: #005a8d;
-  --accent: #d4af37;
-  --bg-light: #f4f4f4;
+  font-family: "Segoe UI", Roboto, sans-serif;
 }
 
 body {
-  background: var(--bg-light);
-  /* Eliminamos el centrado móvil y usamos todo el espacio */
+  background: var(--bg-app);
   display: block;
+  color: var(--text-dark);
 }
 
-/* Contenedor Principal usando CSS Grid */
 .app-container {
-  width: 100%;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  display: grid;
-  /* Creamos dos columnas: 300px para el menú lateral y 1fr (una fracción, el resto del espacio) para el mapa */
-  grid-template-columns: 300px 1fr;
-  background: white;
   overflow: hidden;
 }
 
-/* Header transformado en Sidebar (Panel Lateral) */
-.app-header {
-  padding: 2rem 1rem;
-  background: var(--primary);
+/* Header Corporativo */
+.viva-header {
+  background: var(--viva-green-dark);
   color: white;
-  display: flex;
-  flex-direction: column; /* Apila los elementos verticalmente */
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  z-index: 10;
-}
-
-.app-header h1 {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  padding: 40px 20px 60px 20px; /* Padding inferior extra para el solapamiento */
   text-align: center;
 }
 
-.filter-bar {
+.viva-header h1 {
+  font-size: 2rem;
+  letter-spacing: -0.5px;
+}
+
+.viva-header span {
+  font-weight: 300;
+  color: var(--viva-green-light);
+}
+
+/* Reducir el ancho máximo del widget para que no se estire excesivamente en monitores grandes */
+.viva-widget {
+  background: white;
+  margin: -20px auto 15px auto;
+  width: 95%;
+  max-width: 850px; /* Reducido de 1000px a 850px para proporciones más reales */
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
-  flex-direction: column; /* Botones apilados en escritorio */
-  gap: 12px;
+  flex-direction: column;
+  z-index: 10;
+  overflow: hidden;
 }
 
-.filter-btn {
-  padding: 12px 16px;
-  border-radius: 8px; /* Bordes menos redondeados para escritorio */
-  border: none;
-  background: rgba(255, 255, 255, 0.1);
-  color: white;
-  font-size: 1rem;
+/* Compactar el contenedor de origen y destino */
+.route-planner {
+  display: flex;
+  align-items: center;
+  padding: 30px 60px; /* Reducido el espacio vertical de 25px a 15px */
+  background: white;
+  border-bottom: 30px solid var(--bg-app);
+}
+
+/* Hacer las etiquetas superiores más sutiles */
+.input-group label {
+  font-size: 0.75rem; /* Texto de etiqueta más pequeño */
+  color: var(--text-gray);
+  margin-bottom: 2px; /* Menos margen inferior */
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Ajustar las cajas de selección (inputs) */
+.input-group select {
+  width: 95%;
+  padding: 8px 30px; /* Reducido el relleno interno de 12px a 8px */
+  font-size: 0.95rem; /* Fuente más proporcionada al escritorio */
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  background: #f9f9f9;
+  color: var(--text-dark);
   cursor: pointer;
-  transition:
-    background 0.2s,
-    color 0.2s;
-  text-align: left;
+  outline: none;
 }
 
-.filter-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.filter-btn.active {
-  background: var(--accent);
-  color: black;
+/* Achicar el icono de separación */
+.input-separator {
+  padding: 0 15px;
+  font-size: 1.4rem; /* Reducido de 1.8rem */
+  color: var(--viva-green-light);
   font-weight: bold;
 }
 
-/* Área del Mapa */
+/* Modificadores para Pines (Origen vs Destino) */
+.pin.origen {
+  background: var(--viva-green-dark); /* Color distinto para tu ubicación */
+  z-index: 50;
+}
+
+.pin.destino {
+  background: var(--viva-red);
+  z-index: 51;
+}
+
+/* Escalado general de panel de info */
+.poi-info-panel {
+  padding: 25px 30px;
+}
+
+#poi-name {
+  font-size: 1.6rem; /* Texto más grande */
+}
+
+.stat strong {
+  font-size: 1.8rem; /* Números más grandes */
+}
+
+.filter-tab {
+  flex: 1;
+  padding: 15px 10px;
+  background: transparent;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-gray);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.filter-tab:hover {
+  background: white;
+  color: var(--viva-green-dark);
+}
+
+.filter-tab.active {
+  background: white;
+  color: var(--viva-green-dark);
+  border-bottom: 3px solid var(--viva-green-dark);
+}
+
+/* Panel de Información Estático */
+.poi-info-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+  gap: 20px;
+}
+
+.info-bloque {
+  display: flex;
+  flex-direction: column;
+}
+.info-bloque.principal {
+  flex: 2;
+}
+.info-bloque.estadisticas {
+  flex: 1;
+  flex-direction: row;
+  gap: 30px;
+  border-left: 1px solid #eee;
+  padding-left: 20px;
+}
+.info-bloque.accion {
+  flex: 1;
+  align-items: flex-end;
+}
+
+.etiqueta {
+  font-size: 0.8rem;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+#poi-name {
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  margin-bottom: 2px;
+}
+#poi-category {
+  font-size: 0.9rem;
+  color: var(--viva-green-light);
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.stat strong {
+  font-size: 1.5rem;
+  color: var(--viva-green-dark);
+}
+
+/* Botones y Mapa */
+.viva-btn-red {
+  background: var(--viva-red);
+  color: rgb(255, 255, 255);
+  border: none;
+  padding: 14px 24px;
+  border-radius: var(--border-radius-sm);
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+.viva-btn-red:hover:not(:disabled) {
+  background: var(--viva-red-hover);
+}
+.viva-btn-red:disabled {
+  background: #074b0d;
+  cursor: not-allowed;
+}
+
+/* Ajuste para apilar el mapa y el botón verticalmente */
 .map-viewport {
-  position: relative;
-  background: #e0e0e0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column; /* Cambia el flujo a vertical */
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px 40px 20px; /* Más padding inferior */
+  overflow: auto;
+  gap: 30px; /* Separación exacta entre el plano y el botón */
+}
+
+/* Contenedor del nuevo botón flotante inferior */
+.action-bottom-container {
+  width: 100%;
+  max-width: 400px; /* Evita que el botón sea absurdamente ancho en monitores grandes */
   display: flex;
   justify-content: center;
-  align-items: center; /* Centra el mapa en el espacio sobrante */
-  overflow: auto; /* Permite scroll interno si la imagen es muy grande */
-  padding: 1px;
+  flex-shrink: 0; /* Evita que el contenedor se colapse */
+}
+
+/* Modificador para que el CTA destaque más al estar aislado */
+.action-bottom-container .viva-btn-red {
+  padding: 18px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px; /* Estilo píldora para destacar fuera del widget */
+  box-shadow: 0 8px 20px rgba(0, 255, 13, 0.3); /* Sombra para dar profundidad */
+  transition: all 0.3s ease;
+}
+
+.action-bottom-container .viva-btn-red:hover:not(:disabled) {
+  background: var(--viva-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 255, 42, 0.4);
 }
 
 .map-wrapper {
-  position: relative; /* CRÍTICO: Mantiene el sistema de coordenadas relativo para los pines */
+  position: relative;
   display: inline-block;
-  max-width: 100%;
-  max-height: 100%;
 }
 
 #airport-map {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg); /* Bordes redondeados en el mapa */
+  box-shadow: 0 5px 15px rgba(70, 51, 51, 0.08);
   display: block;
-  max-height: 75vh; /* Evita que la imagen se desborde del alto de la pantalla */
-  width: auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo de los Pines */
 .pin {
   position: absolute;
-  width: 24px;
-  height: 24px;
-  background: var(--accent);
+  width: 22px;
+  height: 22px;
+  background: var(--viva-red); /* Pines en rojo Viva */
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   cursor: pointer;
-  border: 2px solid white;
+  border: 2px solid rgb(255, 255, 255);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
-
 .pin:hover {
-  transform: rotate(-45deg) scale(1.3); /* Mejora de la animación */
-}
-
-/* Panel de Detalles Informativos (Panel inferior centrado) */
-.info-panel {
-  position: absolute;
-  bottom: -500px; /* Escondido fuera de la pantalla hacia abajo */
-  left: 50%;
-  transform: translateX(-50%); /* Técnica técnica de centrado absoluto */
-  width: 600px; /* Un poco más grande como solicitaste */
-  max-width: 90%; /* Para que no desborde en pantallas más pequeñas */
-  background: white;
-  border-radius: 16px 16px 0 0; /* Bordes redondeados solo en la parte superior */
-  padding: 30px;
-  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.15);
-  transition: bottom 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: rotate(-45deg) scale(1.4);
   z-index: 100;
-  border-top: 6px solid var(--accent); /* Detalle visual en la parte superior */
-}
-
-.info-panel.show {
-  bottom: 0; /* Se acopla a la parte inferior de la pantalla */
-}
-
-.close-btn {
-  position: absolute;
-  top: 15px;
-  right: 20px;
-  background: none;
-  border: none;
-  font-size: 1.8rem;
-  cursor: pointer;
-  color: #555;
-  transition: color 0.2s;
-}
-
-.close-btn:hover {
-  color: #000;
-}
-
-.panel-content h2 {
-  font-size: 1.6rem; /* Texto más grande */
-  color: var(--primary);
-  margin-bottom: 8px;
-}
-
-.panel-content #poi-category {
-  font-size: 1rem; /* Texto más grande */
-  color: #777;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-
-.stats {
-  display: flex;
-  justify-content: space-around; /* Separa los elementos uniformemente */
-  gap: 15px;
-  margin-bottom: 25px;
-  background: var(--bg-light);
-  padding: 20px;
-  border-radius: 10px;
-  font-size: 1.2rem; /* Estadísticas más legibles */
-}
-
-.action-btn {
-  width: 100%;
-  padding: 15px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: background 0.2s;
-}
-
-.action-btn:hover {
-  background: #004066;
 }

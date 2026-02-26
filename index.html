@@ -8,30 +8,29 @@
   </head>
   <body>
     <main class="app-container">
-      <header class="app-header">
-        <h1>Explora el GDL</h1>
-        <nav class="filter-bar" id="filter-bar">
-          <button class="filter-btn active" data-category="todos">Todos</button>
-          <button class="filter-btn" data-category="aeropuerto">
-            Aeropuerto
-          </button>
-          <button class="filter-btn" data-category="renta-autos">
-            Renta de Autos
-          </button>
-          <button class="filter-btn" data-category="autoservicio">
-            Autoservicio
-          </button>
-          <button class="filter-btn" data-category="paqueteria">
-            Paquetería
-          </button>
-          <button class="filter-btn" data-category="seguridad">
-            Guardia Nacional
-          </button>
-          <button class="filter-btn" data-category="transporte">
-            Transporte y Shuttle
-          </button>
-        </nav>
+      <header class="viva-header">
+        <h1>VivaMap <span>Navegación Interactiva</span></h1>
       </header>
+
+      <section class="viva-widget">
+        <div class="route-planner">
+          <div class="input-group">
+            <label for="origen-select">Origen</label>
+            <select id="origen-select">
+              <option value="" disabled selected>¿Dónde estás?</option>
+            </select>
+          </div>
+
+          <div class="input-separator">⇄</div>
+
+          <div class="input-group">
+            <label for="destino-select">Destino</label>
+            <select id="destino-select">
+              <option value="" disabled selected>¿A dónde vas?</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <section class="map-viewport" id="map-container">
         <div class="map-wrapper">
@@ -42,20 +41,12 @@
           />
           <div id="pins-layer"></div>
         </div>
-      </section>
-
-      <aside class="info-panel" id="poi-detail">
-        <button class="close-btn">&times;</button>
-        <div class="panel-content">
-          <h2 id="poi-name">Selecciona un punto</h2>
-          <p id="poi-category"></p>
-          <div class="stats">
-            <span>⏳ Espera: <strong id="wait-time">--</strong></span>
-            <span>🚶 Caminata: <strong id="walk-time">--</strong></span>
-          </div>
-          <button class="action-btn">¿Cómo llegar?</button>
+        <div class="action-bottom-container">
+          <button class="viva-btn-red action-btn" id="btn-trazar" disabled>
+            Trazar Ruta
+          </button>
         </div>
-      </aside>
+      </section>
     </main>
 
     <script type="module" src="main.js"></script>
