@@ -1,65 +1,93 @@
-// Base de Datos Estática de Nodos del Mapa
+// Base de Datos Estática de Nodos del Mapa (GDL)
 const nodosMapa = [
   {
-    id: "doc-5-6",
-    nombre: "Mostradores de Documentación - Puertas 5 y 6",
-    categoria: "documentacion",
-    coordenadasX: "15%",
-    coordenadasY: "20%",
-    tiempoEsperaMock: "15 min",
+    id: "term-1",
+    nombre: "Terminal Aeropuerto",
+    categoria: "aeropuerto",
+    coordenadasX: "35%",
+    coordenadasY: "65%",
+    tiempoEsperaMock: "N/A",
   },
   {
-    id: "bano-lucha",
-    nombre: "Baño Temático Lucha Libre",
-    categoria: "banos",
-    coordenadasX: "40%",
-    coordenadasY: "50%",
-    tiempoEsperaMock: "0 min",
-  },
-  {
-    id: "bano-chespirito",
-    nombre: "Baño Temático Chespirito",
-    categoria: "banos",
-    coordenadasX: "65%",
-    coordenadasY: "30%",
-    tiempoEsperaMock: "2 min",
-  },
-  {
-    id: "bano-cine",
-    nombre: "Baño Temático Cine de Oro",
-    categoria: "banos",
-    coordenadasX: "80%",
-    coordenadasY: "70%",
-    tiempoEsperaMock: "0 min",
-  },
-  {
-    id: "trans-vivabus",
-    nombre: "Plataforma VivaBus (Terminal Intermodal)",
-    categoria: "transporte",
-    coordenadasX: "10%",
-    coordenadasY: "85%",
+    id: "renta-1",
+    nombre: "Renta de Autos - Módulo 1",
+    categoria: "renta-autos",
+    coordenadasX: "45%",
+    coordenadasY: "25%",
     tiempoEsperaMock: "5 min",
   },
   {
-    id: "trans-transfer",
-    nombre: "Plataforma Viva Transfer",
-    categoria: "transporte",
-    coordenadasX: "25%",
-    coordenadasY: "85%",
+    id: "renta-2",
+    nombre: "Renta de Autos - Módulo 2",
+    categoria: "renta-autos",
+    coordenadasX: "55%",
+    coordenadasY: "20%",
     tiempoEsperaMock: "10 min",
+  },
+  {
+    id: "tienda-1",
+    nombre: "Tienda de Autoservicio (Ingreso)",
+    categoria: "autoservicio",
+    coordenadasX: "38%",
+    coordenadasY: "48%",
+    tiempoEsperaMock: "0 min",
+  },
+  {
+    id: "tienda-2",
+    nombre: "Tienda de Autoservicio (Exterior)",
+    categoria: "autoservicio",
+    coordenadasX: "92%",
+    coordenadasY: "25%",
+    tiempoEsperaMock: "2 min",
+  },
+  {
+    id: "paq-1",
+    nombre: "Servicio de Paquetería A",
+    categoria: "paqueteria",
+    coordenadasX: "72%",
+    coordenadasY: "58%",
+    tiempoEsperaMock: "15 min",
+  },
+  {
+    id: "paq-2",
+    nombre: "Servicio de Paquetería B",
+    categoria: "paqueteria",
+    coordenadasX: "78%",
+    coordenadasY: "65%",
+    tiempoEsperaMock: "10 min",
+  },
+  {
+    id: "gn-1",
+    nombre: "Módulo Guardia Nacional",
+    categoria: "seguridad",
+    coordenadasX: "65%",
+    coordenadasY: "68%",
+    tiempoEsperaMock: "0 min",
+  },
+  {
+    id: "bus-1",
+    nombre: "Ruta Camión C-98",
+    categoria: "transporte",
+    coordenadasX: "82%",
+    coordenadasY: "48%",
+    tiempoEsperaMock: "12 min",
+  },
+  {
+    id: "shuttle-1",
+    nombre: "Bahía de Descenso Shuttle",
+    categoria: "transporte",
+    coordenadasX: "32%",
+    coordenadasY: "58%",
+    tiempoEsperaMock: "3 min",
   },
 ];
 
-// Lógica de Filtrado Funcional
-// Se utiliza una arrow function y el método filter para retornar un nuevo arreglo sin mutar el original.
 const filtrarNodosPorCategoria = (categoriaSeleccionada) => {
-  // Manejo de error básico: si se pide "todos" o no se pasa categoría, retorna todo.
   if (!categoriaSeleccionada || categoriaSeleccionada === "todos") {
     return nodosMapa;
   }
-
   return nodosMapa.filter((nodo) => nodo.categoria === categoriaSeleccionada);
 };
 
-// Ejemplo de uso en consola para verificar que funciona antes de tocar el DOM:
-// console.log(filtrarNodosPorCategoria("banos"));
+// Exportamos la información para poder usarla en el script principal
+export { nodosMapa, filtrarNodosPorCategoria };
