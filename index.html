@@ -13,44 +13,21 @@
       </header>
 
       <section class="viva-widget">
-        <nav class="filter-tabs" id="filter-bar">
-          <button class="filter-tab active" data-category="todos">Todos</button>
-          <button class="filter-tab" data-category="aeropuerto">
-            Aeropuerto
-          </button>
-          <button class="filter-tab" data-category="renta-autos">Autos</button>
-          <button class="filter-tab" data-category="autoservicio">
-            Tiendas
-          </button>
-          <button class="filter-tab" data-category="paqueteria">Envíos</button>
-          <button class="filter-tab" data-category="seguridad">
-            Seguridad
-          </button>
-          <button class="filter-tab" data-category="transporte">
-            Traslados
-          </button>
-        </nav>
+        <div class="route-planner">
+          <div class="input-group">
+            <label for="origen-select">Origen</label>
+            <select id="origen-select">
+              <option value="" disabled selected>¿Dónde estás?</option>
+            </select>
+          </div>
 
-        <div class="poi-info-panel" id="poi-detail">
-          <div class="info-bloque principal">
-            <span class="etiqueta">Punto de Interés</span>
-            <h2 id="poi-name">Selecciona un punto en el mapa</h2>
-            <p id="poi-category">---</p>
-          </div>
-          <div class="info-bloque estadisticas">
-            <div class="stat">
-              <span class="etiqueta">Espera en sitio</span>
-              <strong id="wait-time">--</strong>
-            </div>
-            <div class="stat">
-              <span class="etiqueta">Tiempo de caminata</span>
-              <strong id="walk-time">--</strong>
-            </div>
-          </div>
-          <div class="info-bloque accion">
-            <button class="viva-btn-red action-btn" disabled>
-              Trazar Ruta
-            </button>
+          <div class="input-separator">⇄</div>
+
+          <div class="input-group">
+            <label for="destino-select">Destino</label>
+            <select id="destino-select">
+              <option value="" disabled selected>¿A dónde vas?</option>
+            </select>
           </div>
         </div>
       </section>
@@ -63,6 +40,11 @@
             id="airport-map"
           />
           <div id="pins-layer"></div>
+        </div>
+        <div class="action-bottom-container">
+          <button class="viva-btn-red action-btn" id="btn-trazar" disabled>
+            Trazar Ruta
+          </button>
         </div>
       </section>
     </main>

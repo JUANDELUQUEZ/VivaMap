@@ -35,7 +35,7 @@ body {
 .viva-header {
   background: var(--viva-green-dark);
   color: white;
-  padding: 30px 20px 60px 20px; /* Padding inferior extra para el solapamiento */
+  padding: 40px 20px 60px 20px; /* Padding inferior extra para el solapamiento */
   text-align: center;
 }
 
@@ -49,12 +49,12 @@ body {
   color: var(--viva-green-light);
 }
 
-/* Widget de Control Central */
+/* Reducir el ancho máximo del widget para que no se estire excesivamente en monitores grandes */
 .viva-widget {
   background: white;
-  margin: -30px auto 15px auto; /* El margen negativo crea el solapamiento */
+  margin: -20px auto 15px auto;
   width: 95%;
-  max-width: 1000px;
+  max-width: 850px; /* Reducido de 1000px a 850px para proporciones más reales */
   border-radius: var(--border-radius-lg);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   display: flex;
@@ -63,12 +63,67 @@ body {
   overflow: hidden;
 }
 
-/* Pestañas (Filtros) */
-.filter-tabs {
+/* Compactar el contenedor de origen y destino */
+.route-planner {
   display: flex;
-  background: #f4f7f6;
-  border-bottom: 1px solid #e0e0e0;
-  overflow-x: auto;
+  align-items: center;
+  padding: 30px 60px; /* Reducido el espacio vertical de 25px a 15px */
+  background: white;
+  border-bottom: 30px solid var(--bg-app);
+}
+
+/* Hacer las etiquetas superiores más sutiles */
+.input-group label {
+  font-size: 0.75rem; /* Texto de etiqueta más pequeño */
+  color: var(--text-gray);
+  margin-bottom: 2px; /* Menos margen inferior */
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Ajustar las cajas de selección (inputs) */
+.input-group select {
+  width: 95%;
+  padding: 8px 30px; /* Reducido el relleno interno de 12px a 8px */
+  font-size: 0.95rem; /* Fuente más proporcionada al escritorio */
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius-sm);
+  background: #f9f9f9;
+  color: var(--text-dark);
+  cursor: pointer;
+  outline: none;
+}
+
+/* Achicar el icono de separación */
+.input-separator {
+  padding: 0 15px;
+  font-size: 1.4rem; /* Reducido de 1.8rem */
+  color: var(--viva-green-light);
+  font-weight: bold;
+}
+
+/* Modificadores para Pines (Origen vs Destino) */
+.pin.origen {
+  background: var(--viva-green-dark); /* Color distinto para tu ubicación */
+  z-index: 50;
+}
+
+.pin.destino {
+  background: var(--viva-red);
+  z-index: 51;
+}
+
+/* Escalado general de panel de info */
+.poi-info-panel {
+  padding: 25px 30px;
+}
+
+#poi-name {
+  font-size: 1.6rem; /* Texto más grande */
+}
+
+.stat strong {
+  font-size: 1.8rem; /* Números más grandes */
 }
 
 .filter-tab {
@@ -151,7 +206,7 @@ body {
 /* Botones y Mapa */
 .viva-btn-red {
   background: var(--viva-red);
-  color: white;
+  color: rgb(255, 255, 255);
   border: none;
   padding: 14px 24px;
   border-radius: var(--border-radius-sm);
@@ -165,17 +220,44 @@ body {
   background: var(--viva-red-hover);
 }
 .viva-btn-red:disabled {
-  background: #ccc;
+  background: #074b0d;
   cursor: not-allowed;
 }
 
+/* Ajuste para apilar el mapa y el botón verticalmente */
 .map-viewport {
-  flex-grow: 1; /* Ocupa el resto de la pantalla */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column; /* Cambia el flujo a vertical */
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 20px 40px 20px; /* Más padding inferior */
+  overflow: auto;
+  gap: 30px; /* Separación exacta entre el plano y el botón */
+}
+
+/* Contenedor del nuevo botón flotante inferior */
+.action-bottom-container {
+  width: 100%;
+  max-width: 400px; /* Evita que el botón sea absurdamente ancho en monitores grandes */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
-  padding: 0 20px 20px 20px;
-  overflow: auto;
+  flex-shrink: 0; /* Evita que el contenedor se colapse */
+}
+
+/* Modificador para que el CTA destaque más al estar aislado */
+.action-bottom-container .viva-btn-red {
+  padding: 18px 30px;
+  font-size: 1.2rem;
+  border-radius: 30px; /* Estilo píldora para destacar fuera del widget */
+  box-shadow: 0 8px 20px rgba(0, 255, 13, 0.3); /* Sombra para dar profundidad */
+  transition: all 0.3s ease;
+}
+
+.action-bottom-container .viva-btn-red:hover:not(:disabled) {
+  background: var(--viva-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 255, 42, 0.4);
 }
 
 .map-wrapper {
@@ -186,7 +268,7 @@ body {
 #airport-map {
   max-width: 100%;
   border-radius: var(--border-radius-lg); /* Bordes redondeados en el mapa */
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 15px rgba(70, 51, 51, 0.08);
   display: block;
 }
 
@@ -198,7 +280,7 @@ body {
   border-radius: 50% 50% 50% 0;
   transform: rotate(-45deg);
   cursor: pointer;
-  border: 2px solid white;
+  border: 2px solid rgb(255, 255, 255);
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
   transition: transform 0.2s;
 }
