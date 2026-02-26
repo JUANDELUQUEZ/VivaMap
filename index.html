@@ -8,30 +8,52 @@
   </head>
   <body>
     <main class="app-container">
-      <header class="app-header">
-        <h1>Explora el GDL</h1>
-        <nav class="filter-bar" id="filter-bar">
-          <button class="filter-btn active" data-category="todos">Todos</button>
-          <button class="filter-btn" data-category="aeropuerto">
+      <header class="viva-header">
+        <h1>VivaMap <span>Navegación Interactiva</span></h1>
+      </header>
+
+      <section class="viva-widget">
+        <nav class="filter-tabs" id="filter-bar">
+          <button class="filter-tab active" data-category="todos">Todos</button>
+          <button class="filter-tab" data-category="aeropuerto">
             Aeropuerto
           </button>
-          <button class="filter-btn" data-category="renta-autos">
-            Renta de Autos
+          <button class="filter-tab" data-category="renta-autos">Autos</button>
+          <button class="filter-tab" data-category="autoservicio">
+            Tiendas
           </button>
-          <button class="filter-btn" data-category="autoservicio">
-            Autoservicio
+          <button class="filter-tab" data-category="paqueteria">Envíos</button>
+          <button class="filter-tab" data-category="seguridad">
+            Seguridad
           </button>
-          <button class="filter-btn" data-category="paqueteria">
-            Paquetería
-          </button>
-          <button class="filter-btn" data-category="seguridad">
-            Guardia Nacional
-          </button>
-          <button class="filter-btn" data-category="transporte">
-            Transporte y Shuttle
+          <button class="filter-tab" data-category="transporte">
+            Traslados
           </button>
         </nav>
-      </header>
+
+        <div class="poi-info-panel" id="poi-detail">
+          <div class="info-bloque principal">
+            <span class="etiqueta">Punto de Interés</span>
+            <h2 id="poi-name">Selecciona un punto en el mapa</h2>
+            <p id="poi-category">---</p>
+          </div>
+          <div class="info-bloque estadisticas">
+            <div class="stat">
+              <span class="etiqueta">Espera en sitio</span>
+              <strong id="wait-time">--</strong>
+            </div>
+            <div class="stat">
+              <span class="etiqueta">Tiempo de caminata</span>
+              <strong id="walk-time">--</strong>
+            </div>
+          </div>
+          <div class="info-bloque accion">
+            <button class="viva-btn-red action-btn" disabled>
+              Trazar Ruta
+            </button>
+          </div>
+        </div>
+      </section>
 
       <section class="map-viewport" id="map-container">
         <div class="map-wrapper">
@@ -43,19 +65,6 @@
           <div id="pins-layer"></div>
         </div>
       </section>
-
-      <aside class="info-panel" id="poi-detail">
-        <button class="close-btn">&times;</button>
-        <div class="panel-content">
-          <h2 id="poi-name">Selecciona un punto</h2>
-          <p id="poi-category"></p>
-          <div class="stats">
-            <span>⏳ Espera: <strong id="wait-time">--</strong></span>
-            <span>🚶 Caminata: <strong id="walk-time">--</strong></span>
-          </div>
-          <button class="action-btn">¿Cómo llegar?</button>
-        </div>
-      </aside>
     </main>
 
     <script type="module" src="main.js"></script>
