@@ -11,6 +11,7 @@
   --border-radius-sm: 10px;
 }
 
+/* Reset y tipografía global */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -27,8 +28,9 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100vh; /* dejar que la página crezca y pueda scrollear */
+  overflow: auto; /* permitir scroll global en lugar de esconder contenido */
+  padding-bottom: 140px; /* espacio para el botón fijo inferior */
 }
 
 /* Header Corporativo */
@@ -49,27 +51,84 @@ body {
   color: var(--viva-green-light);
 }
 
+/* Panel superior que reemplaza al antiguo route-planner */
+.flight-info-panel {
+  background: white;
+  border-radius: var(--border-radius-lg);
+  padding: 20px 25px;
+  margin: 12px auto 18px auto; /* separación clara respecto del header/widget */
+  max-width: 850px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f1f1f1; /* borde sutil para diferenciar paneles */
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.flight-selection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flight-data {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.flight-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flight-label {
+  font-size: 0.75rem;
+  color: var(--text-gray);
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.flight-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--viva-green-dark);
+}
+
+.flight-field.overbooking .flight-value {
+  color: var(--viva-red);
+}
+
+.flight-alert {
+  background: #f0f9ff;
+  color: var(--viva-green-dark);
+  padding: 8px 12px;
+  border-radius: var(--border-radius-sm);
+  font-size: 0.9rem;
+  text-align: center;
+  border-left: 4px solid var(--viva-green-light);
+}
+
 /* Reducir el ancho máximo del widget para que no se estire excesivamente en monitores grandes */
 .viva-widget {
   background: white;
-  margin: -20px auto 15px auto;
+  margin: 20px auto 18px auto; /* evitar solapamientos con header */
   width: 95%;
-  max-width: 850px; /* Reducido de 1000px a 850px para proporciones más reales */
+  max-width: 850px; /* proporciones reales */
   border-radius: var(--border-radius-lg);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
   display: flex;
   flex-direction: column;
   z-index: 10;
-  overflow: hidden;
+  overflow: visible;
+  padding: 12px; /* espacio interno para que los bordes no toquen contenido */
 }
 
-/* Compactar el contenedor de origen y destino */
+/* El antiguo route-planner se mantiene solo por compatibilidad interna */
 .route-planner {
-  display: flex;
-  align-items: center;
-  padding: 30px 60px; /* Reducido el espacio vertical de 25px a 15px */
-  background: white;
-  border-bottom: 30px solid var(--bg-app);
+  display: none;
 }
 
 /* Hacer las etiquetas superiores más sutiles */
@@ -228,12 +287,12 @@ body {
 .map-viewport {
   flex-grow: 1;
   display: flex;
-  flex-direction: column; /* Cambia el flujo a vertical */
+  flex-direction: column; /* flujo vertical */
   justify-content: flex-start;
   align-items: center;
-  padding: 0 20px 40px 20px; /* Más padding inferior */
-  overflow: auto;
-  gap: 30px; /* Separación exacta entre el plano y el botón */
+  padding: 8px 20px 24px 20px; /* padding interior moderado */
+  overflow: visible; /* permitir scroll del documento, no solo del mapa */
+  gap: 24px; /* separación entre mapa y elementos */
 }
 
 /* Contenedor del nuevo botón flotante inferior */
@@ -243,6 +302,13 @@ body {
   display: flex;
   justify-content: center;
   flex-shrink: 0; /* Evita que el contenedor se colapse */
+  /* fijado al fondo de la ventana para que siempre sea visible */
+  position: fixed;
+  bottom: 20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  z-index: 100;
 }
 
 /* Modificador para que el CTA destaque más al estar aislado */
