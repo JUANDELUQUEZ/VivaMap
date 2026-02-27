@@ -13,40 +13,91 @@
       </header>
 
       <section class="viva-widget">
-        <div class="route-planner">
-          <div class="input-group">
-            <label for="origen-select">Origen</label>
-            <select id="origen-select">
-              <option value="" disabled selected>¿Dónde estás?</option>
-            </select>
+        <!-- panel superior combinado con datos de vuelo -->
+        <div class="flight-info-panel">
+          <div class="flight-selection">
+            <div class="input-group">
+              <label for="origen-select">Origen</label>
+              <select id="origen-select">
+                <option value="" disabled selected>¿Dónde estás?</option>
+              </select>
+            </div>
+
+            <div class="input-separator">⇄</div>
+
+            <div class="input-group">
+              <label for="destino-select">Destino</label>
+              <select id="destino-select">
+                <option value="" disabled selected>¿A dónde vas?</option>
+              </select>
+            </div>
           </div>
 
-          <div class="input-separator">⇄</div>
+          <div class="flight-data">
+            <div class="flight-field">
+              <span class="flight-label">Vuelo</span>
+              <span class="flight-value" id="flight-number">--</span>
+            </div>
+            <div class="flight-field">
+              <span class="flight-label">Asiento</span>
+              <span class="flight-value" id="seat-number">--</span>
+            </div>
+            <div class="flight-field">
+              <span class="flight-label">Hora</span>
+              <span class="flight-value" id="flight-time">--</span>
+            </div>
+            <div class="flight-field">
+              <span class="flight-label">Puerta</span>
+              <span class="flight-value" id="gate-number">--</span>
+            </div>
+            <div class="flight-field overbooking">
+              <span class="flight-label">Overbooking</span>
+              <span class="flight-value" id="overbooking-percent">--</span>
+            </div>
+          </div>
 
-          <div class="input-group">
-            <label for="destino-select">Destino</label>
-            <select id="destino-select">
-              <option value="" disabled selected>¿A dónde vas?</option>
-            </select>
+          <div class="flight-alert">
+            🔔 Recordatorio: Realiza tu <strong>Check‑in</strong> ahora.
           </div>
         </div>
-      </section>
+          <!-- mapa y botón dentro del mismo widget para mantener bordes redondeados -->
+          <section class="map-viewport" id="map-container">
+            <div class="map-wrapper">
+              <img
+                src="./assets/plano-gadl-airport.png"
+                alt="Plano Aeropuerto"
+                id="airport-map"
+              />
+              <div id="pins-layer"></div>
+            </div>
+            <div class="action-bottom-container">
+              <button class="viva-btn-red action-btn" id="btn-trazar" disabled>
+                Trazar Ruta
+              </button>
+            </div>
+          </section>
 
-      <section class="map-viewport" id="map-container">
-        <div class="map-wrapper">
-          <img
-            src="./assets/plano-gadl-airport.png"
-            alt="Plano Aeropuerto"
-            id="airport-map"
-          />
-          <div id="pins-layer"></div>
-        </div>
-        <div class="action-bottom-container">
-          <button class="viva-btn-red action-btn" id="btn-trazar" disabled>
-            Trazar Ruta
-          </button>
-        </div>
-      </section>
+          <!-- panel inferior que muestra resultado de la ruta -->
+          <section class="poi-info-panel">
+            <div class="info-bloque principal">
+              <div id="poi-name">Selecciona un origen y un destino</div>
+              <div id="poi-category"></div>
+            </div>
+            <div class="info-bloque estadisticas">
+              <div class="stat">
+                <strong id="wait-time">--</strong>
+                <span class="etiqueta">Espera</span>
+              </div>
+              <div class="stat">
+                <strong id="walk-time">--</strong>
+                <span class="etiqueta">Caminata</span>
+              </div>
+            </div>
+            <div class="info-bloque accion">
+              <button class="viva-btn-red" disabled id="btn-action-aux">Acción</button>
+            </div>
+          </section>
+        </section>
     </main>
 
     <script type="module" src="main.js"></script>

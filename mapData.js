@@ -1,4 +1,6 @@
 // Base de Datos Estática de Nodos del Mapa (GDL)
+// Cada objeto representa un punto de interés sobre el plano con
+// coordenadas relativas y un tiempo de espera ficticio.
 const nodosMapa = [
   {
     id: "term-1",
